@@ -293,15 +293,15 @@ const removeQuotes = (a) => {
   const verifyHeader = async ({ headerParts, body, publicKey }) => {
     const { signingString } = await createSigningString({
       message: body,
-      created: headerParts?.created,
-      expires: headerParts?.expires,
+      created: headerParts.created,
+      expires: headerParts.expires,
     });
 
     console.log('signingString'+signingString);
 
 
     const verified = await verifyMessage({
-      signedString: headerParts?.signature,
+      signedString: headerParts.signature,
       signingString,
       publicKey,
     });
@@ -312,7 +312,7 @@ const removeQuotes = (a) => {
     try {
       const headerParts = splitAuthHeader(header);
 
-      const keyIdSplit = headerParts?.keyId?.split('|');
+      const keyIdSplit = headerParts.keyId.split('|');
       const subscriberId = keyIdSplit[0];
       const keyId = keyIdSplit[1];
   
@@ -431,7 +431,7 @@ app.post('/validate', async (req, res) => {
     const headerParts = splitAuthHeader(authHeader);
 
       
-    const keyIdSplit = headerParts?.keyId?.split('|');
+    const keyIdSplit = headerParts.keyId.split('|');
     const subscriberId = keyIdSplit[0];
     const keyId = keyIdSplit[1];
 
@@ -464,15 +464,15 @@ app.post('/validate', async (req, res) => {
 
         const { signingString } = await createSigningString({
       message: body,
-      created: headerParts?.created,
-      expires: headerParts?.expires,
+      created: headerParts.created,
+      expires: headerParts.expires,
     });
 
     console.log('signingString'+signingString);
 
 
     const verified = await verifyMessage({
-      signedString: headerParts?.signature,
+      signedString: headerParts.signature,
       signingString,
       publicKey,
     });
